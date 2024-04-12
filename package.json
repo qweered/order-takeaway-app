@@ -15,10 +15,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "clsx": "^2.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss": "^4.0.0-alpha.11",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0-alpha.11",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
