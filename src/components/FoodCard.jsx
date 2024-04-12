@@ -1,35 +1,51 @@
+import { Component } from "react";
 import Button from "@/components/Button.jsx";
-import {useState} from "react";
 
-const FoodCard = ({url, description, name, price}) => {
-
-    const [input, setInput] = useState(1);
-
-    const handleInputChange = (e) => {
-        setInput(e.target.value)
-    }
-
+class FoodCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: 0,
+    };
+  }
+  handleInput = (id) => {
+    this.props.addToCart(id, this.state.inputValue);
+    this.setState({ inputValue: 0 });
+  };
+  render() {
+    const { id, url, description, name, price, addToCart } = this.props;
     return (
-        <div className="rounded-md border border-gray-600/15 flex justify-start items-center gap-8 p-6 w-2/5 mb-5">
-            <div className="size-30">
-                <img src={url} alt="burger"/>
-            </div>
-            <div className="flex flex-col justify-center items-start gap-2">
-                <div className="flex items-center justify-between w-full font-inter font-normal leading-5">
-                    <p className="text-black text-base tracking-wider">{name}</p>
-                    <p className="text-main text-sm">$ {price} USD</p>
-                </div>
-                <div
-                    className="text-gray-500 text-normal font-inter font-normal leading-6 tracking-wider">{description}</div>
-                <div className="flex items-center justify-start gap-5">
-                    <input
-                        className="rounded-md border border-solid border-gray-300 bg-gray-100 w-14 h-11 text-black text-center text-lg font-normal leading-7 tracking-wider"
-                        onInput={handleInputChange} value={input}/>
-                    <Button>Add to card</Button>
-                </div>
-            </div>
+      <div className="rounded-md border border-gray-600/15 flex justify-start items-center gap-8 p-6 w-2/5 mb-5">
+        <div className="size-32 shrink-0">
+          <img src={url} alt="burger" />
         </div>
-    )
+        <div className="flex flex-col justify-between items-start gap-2">
+          <div className="flex items-center justify-between w-full">
+            <h2 className="text-gray-900 text-lg font-normal leading-tight tracking-wider">
+              {name}
+            </h2>
+            <div className="text-main text-base font-normal leading-normal">
+              $ {price} USD
+            </div>
+          </div>
+          <h3 className="text-gray-700 text-base font-normal leading-6 tracking-wide max-h-12 overflow-y-auto">
+            {description}
+          </h3>
+          <div className="flex items-center justify-start gap-5">
+            <div className="card__image__description__footer__price">
+              <input
+                className="rounded-md border border-gray-300 bg-gray-100 w-14 h-10 text-black text-center text-base font-normal leading-7 tracking-wide"
+                type="text"
+                value={this.state.inputValue}
+                onChange={(e) => this.setState({ inputValue: e.target.value })}
+              />
+            </div>
+            <Button onClick={() => this.handleInput(id)}>Add to card</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default FoodCard
+export default FoodCard;
