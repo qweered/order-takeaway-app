@@ -1,4 +1,4 @@
-import { handleError } from "@/utils/handleError.js";
+import { handleError } from "../utils/handleError.js";
 
 export const fetchOrders = async () => {
   const data = await fetch(

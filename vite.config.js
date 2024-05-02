@@ -1,15 +1,15 @@
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "vite";
-import path from "path";
+import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
+import macrosPlugin from "vite-plugin-babel-macros";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), svgr()],
+  plugins: [macrosPlugin(), react(), svgr(), TanStackRouterVite()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": "/src",
     },
   },
 });

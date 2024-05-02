@@ -1,38 +1,30 @@
-import "./index.css";
-import Header from "@/components/Header.jsx";
-import Description from "@/components/Description.jsx";
-import Footer from "@/components/Footer.jsx";
-import { Component } from "react";
+import {useState} from 'react';
+import './index.css';
+import Header from '@/components/Header.jsx';
+import Description from '@/components/Description.jsx';
+import Footer from '@/components/Footer.jsx';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartMeals: {},
-    };
-  }
-  addToCart = (id) => {
-    this.setState((prevState) => {
-      const newCart = {
-        ...prevState.cartMeals,
-        [id]: (prevState.cartMeals[id] || 0) + 1,
-      };
+function App() {
+  const [cartMeals, setCartMeals] = useState({});
+
+  const addToCart = (id) => {
+    setCartMeals((prevState) => {
       return {
-        cartMeals: newCart,
+        ...prevState,
+        [id]: (prevState[id] || 0) + 1,
       };
     });
   };
-  render() {
-    return (
+
+  return (
       <>
-        <Header cartMealsSize={Object.keys(this.state.cartMeals).length} />
+        <Header cartMealsSize={Object.keys(cartMeals).length} />
         <div className="bg-[#F5FBFC]">
-          <Description addToCart={this.addToCart} />
+          <Description addToCart={addToCart} />
           <Footer />
         </div>
       </>
-    );
-  }
+  );
 }
 
 export default App;
