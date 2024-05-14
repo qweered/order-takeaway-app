@@ -1,8 +1,6 @@
 import Logo from "@/assets/icons/logo.svg?react";
-import { Component } from "react";
 
-class Footer extends Component {
-  render() {
+const Footer = () => {
     return (
       <footer className="w-4/5 mx-auto">
         <div className="flex justify-around font-inter font-inter text-slate-500 font-normal mb-10">
@@ -47,7 +45,6 @@ class Footer extends Component {
         </div>
       </footer>
     );
-  }
 }
 
 export default Footer;
